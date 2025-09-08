@@ -1,0 +1,20 @@
+# Base image
+FROM python:3.12-slim AS base
+WORKDIR /app
+
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy source
+COPY . .
+
+EXPOSE 5000
+
+# Default run command
+CMD ["python", "app.py"]
+
+# Test stage
+FROM base AS test
+RUN pip install pytest requests
+CMD ["pytest", "-q", "tests/"]
