@@ -62,7 +62,8 @@ The pipeline runs automatically on:
 
 
 
-<img width="1053" height="502" alt="image" src="https://github.com/user-attachments/assets/8b9ef6df-f74c-4d4e-ac3a-ddb712ea139c" />
+<img width="1107" height="561" alt="image" src="https://github.com/user-attachments/assets/6f7fb20a-2fc2-48bc-8d0c-4c4f0bf941e2" />
+
 
 
 
