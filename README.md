@@ -6,6 +6,7 @@ The pipeline ensures that code changes are automatically tested, packaged into a
 
 ---
 
+
 ## 🔄 Workflow Overview
 
 The pipeline is defined in [`.github/workflows/cicd.yml`](.github/workflows/cicd.yml).  
@@ -27,6 +28,8 @@ It has two jobs:
 
 ---
 
+
+
 ## ⚙️ Trigger
 
 The pipeline runs automatically on:
@@ -35,6 +38,8 @@ The pipeline runs automatically on:
 - **Manual runs** → using the “Run workflow” button in GitHub Actions.  
 
 ---
+
+
 
 ## 🛠 Why GitHub Actions?
 
@@ -46,28 +51,36 @@ The pipeline runs automatically on:
 ---
 
 
-## ✅ Example Run (Screenshots to Include)
+
+## ✅ Run
 
 1. **Workflow Trigger**
 
+
+
 <img width="1046" height="512" alt="image" src="https://github.com/user-attachments/assets/20c39af1-3158-4358-bffb-e052df181aa5" />
+
+
 
 <img width="1053" height="502" alt="image" src="https://github.com/user-attachments/assets/8b9ef6df-f74c-4d4e-ac3a-ddb712ea139c" />
 
-<img width="1045" height="519" alt="image" src="https://github.com/user-attachments/assets/30114758-4af3-4c23-b607-c545ead10bf5" />
-
-<img width="963" height="498" alt="image" src="https://github.com/user-attachments/assets/d3294042-d16f-41bc-bcb6-562db07604f4" />
 
 
-4. **Docker Hub Repository**  
-   Tags `latest` and `<short-sha>` visible in Docker Hub.  
-<img width="1219" height="368" alt="image" src="https://github.com/user-attachments/assets/2b87ca9a-e8b4-4e71-a693-daf729cfd9aa" />
+<img width="969" height="530" alt="image" src="https://github.com/user-attachments/assets/a1ad29c0-6eb8-429a-9991-fa5d64f8e7d5" />
 
-<img width="626" height="467" alt="image" src="https://github.com/user-attachments/assets/ed86c351-4c2d-47b2-9b2c-025a842813a6" />
 
+
+
+2. **Docker Hub Repository**  
+   Tags `latest` and `<short-sha>` visible in Docker Hub.
+
+
+    
+<img width="1241" height="517" alt="image" src="https://github.com/user-attachments/assets/131938a2-9917-45e8-aad6-1aab912c0d9a" />
 
 
 ---
+
 
 ## 🧩 Step-by-Step Explanation
 
@@ -82,6 +95,8 @@ The pipeline runs automatically on:
 | **Build & Push** | `docker/build-push-action` | Create + publish image |
 
 ---
+
+
 
 ## ⚠️ Challenges & Solutions
 
