@@ -1,4 +1,4 @@
-Dockerized Flask App with CI/CD 🚀
+*Dockerized Flask App with CI/CD 🚀*
 
 This repository contains a simple Flask web application containerized with Docker and integrated with a CI/CD pipeline using GitHub Actions.
 
