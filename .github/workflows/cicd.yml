@@ -28,11 +28,12 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install flask; fi
           pip install pytest
+
       - name: Run tests
         run: pytest -q
 
   build-and-publish:
-    # Only publish on actual pushes to main, not on PRs
+    # Only publish on actual pushes to main, not PRs
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: build-and-test
     runs-on: ubuntu-latest
@@ -46,17 +47,20 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Log in to DockerHub
+      - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }} # Use a Docker Hub access token
+          password: ${{ secrets.DOCKER_PASSWORD }}  # Use a Docker Hub access token
 
-      - name: Compute tags
+      - name: Extract metadata (tags, labels)
         id: meta
-        run: |
-          SHORT_SHA=${GITHUB_SHA::7}
-          echo "latest,${{ env.IMAGE_NAME }}:${SHORT_SHA}" | awk -v base="${{ env.IMAGE_NAME }}" 'BEGIN{FS=","} {print "tags=" base ":latest," base ":" ENVIRON["SHORT_SHA"]}' >> $GITHUB_OUTPUT
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha,format=short
 
       - name: Build and push Docker image
         id: docker_build
@@ -64,7 +68,8 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.IMAGE_NAME }}:latest,${{ env.IMAGE_NAME }}:${{ github.sha::7 }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
       - name: Image digest
         run: echo "Digest: ${{ steps.docker_build.outputs.digest }}"
